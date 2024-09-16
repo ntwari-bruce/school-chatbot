@@ -1,0 +1,32 @@
+# Ignore virtual environment
+venv/
+chatvenv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Environment files
+.env
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+
+# Flask specific
+instance/
+*.log
+
+# Ignore virtual machine images
+*.vdi
+*.vmdk
+*.vmem
+*.vmx
+*.vagrant
+
+# Ignore node_modules if present for Next.js (if you're using it)
+node_modules/
+
+# Cache
+*.cache
+*.log
+*.lock

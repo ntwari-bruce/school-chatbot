@@ -1,0 +1,9 @@
+Flask==2.3.2
+openai==0.27.0  # Make sure you adjust this to match the latest or your preferred version.
+python-dotenv==1.0.0
+pinecone-client==2.2.1
+langchain==0.0.208  # Check compatibility with your version and libraries
+langchain-openai==0.1.0
+langchain_community==0.0.15
+torch==2.0.1  # Needed for using PyTorch models like LLaMA
+transformers==4.28.1  # For loading and using transformer models like LLaMA
