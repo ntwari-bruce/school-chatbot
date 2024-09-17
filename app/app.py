@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
@@ -11,6 +12,8 @@ load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}}) 
+
 
 # Check for required environment variables
 required_env_vars = ['OPENAI_API_KEY', 'PINECONE_API_KEY', 'PINECONE_INDEX_NAME']
@@ -58,7 +61,7 @@ def get_relevant_chunks(query, top_k=3):
             })
     
     return relevant_chunks
-    
+
 def make_openai_request(prompt, context):
     try:
         messages = [
@@ -76,6 +79,7 @@ def make_openai_request(prompt, context):
         return {"error": str(e)}
 
 @app.route('/api/chat', methods=['POST'])
+@cross_origin()
 def chat():
     user_input = request.json.get('question')
     
@@ -102,6 +106,7 @@ def chat():
     
     # If all attempts failed
     return jsonify({"error": "Failed to connect to OpenAI API after multiple attempts"}), 500
+
 
 if __name__ == "__main__":
     app.run(debug=True)
