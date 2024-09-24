@@ -1,0 +1,10 @@
+Flask==2.3.2
+openai>=1.10.0,<2.0.0  # Make sure this is compatible with langchain-openai
+python-dotenv==1.0.0
+pinecone-client>=2.2.0,<3.0.0
+langchain>=0.0.200,<0.0.210  # Match with other langchain dependencies
+langchain-openai>=0.1.0,<0.2.0
+langchain_community>=0.0.15,<0.1.0
+Flask-CORS==3.0.10
+
+
