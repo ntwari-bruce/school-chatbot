@@ -4,7 +4,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from langchain_community.embeddings import OpenAIEmbeddings  # Updated import
-from pinecone import Pinecone
+import pinecone
 import time
 
 # Load environment variables
@@ -25,8 +25,8 @@ if missing_vars:
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 # Initialize Pinecone
-pc = Pinecone(api_key=os.getenv('PINECONE_API_KEY'))
-index = pc.Index(os.getenv('PINECONE_INDEX_NAME'))
+pinecone.init(api_key=os.getenv('PINECONE_API_KEY'))
+index = pinecone.Index(os.getenv('PINECONE_INDEX_NAME'))
 
 # Initialize OpenAIEmbeddings
 embedding_model = OpenAIEmbeddings()
@@ -109,4 +109,5 @@ def chat():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port, debug=True)
